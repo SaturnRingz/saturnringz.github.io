@@ -9,7 +9,7 @@
   </head>
   <body>
     <nav>
-      <h1 class="title">Emiliano Molina</h1>
+      <h1>EMILIANO MOLINA</h1>
       <button id="display-options">
         <img
           src="img/icon/drag_handle_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.svg"
@@ -33,22 +33,58 @@
         </li>
       </ul>
     </nav>
-    <div class="content">
-      <h2 style="font-size: 2.5rem;">wasauski</h2>
-      <span></span>
-      <button>Mi trabajo</button>
-    </div>
+    <div id="content"></div>
     <script>
-      const button = document.getElementById("display-options");
+      const menuButton = document.getElementById("display-options");
       const optionList = document.getElementById("menu-list");
+      const content = document.getElementById("content");
 
-      button.addEventListener("click", () => {
+      menuButton.addEventListener("click", () => {
         if (optionList.style.display == "none") {
           optionList.style.display = "block";
         } else {
           optionList.style.display = "none";
         }
       });
+
+      const titlesAndDescriptions = [
+        {
+          title: "Mi trabajo",
+          description: "Esta es una descripción de mi trabajo",
+          button: "Este es el texto del botón",
+          link: "pages/projects",
+        },
+        {
+          title: "Quien soy",
+          description: "Esta es una descripción de quién soy",
+          button: "Este es el texto del botón",
+          link: "pages/about",
+        },
+        {
+          title: "Contacto",
+          description: "Esta es una descripción de mi trabajo",
+          button: "Este es el texto del botón",
+          link: "pages/contact",
+        },
+      ];
+
+      for (let i = 0; i <= titlesAndDescriptions.length; i++) {
+        const card = document.createElement("div");
+        const title = document.createElement("h2");
+        const description = document.createElement("span");
+        const cardButton = document.createElement("button");
+        const anchor = document.createElement("a");
+        title.style.fontSize = "2rem";
+        title.textContent = titlesAndDescriptions[i].title;
+        description.textContent = titlesAndDescriptions[i].description;
+        anchor.textContent = titlesAndDescriptions[i].button;
+        anchor.href = titlesAndDescriptions[i].link;
+        card.appendChild(title);
+        card.appendChild(description);
+        cardButton.appendChild(anchor);
+        card.appendChild(cardButton);
+        content.appendChild(card);
+      }
     </script>
   </body>
 </html>
