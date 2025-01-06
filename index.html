@@ -1,13 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <h1>Oracio</h1>
-    <a href="/contact.html">Kontakto</a>
-</body>
+    <link rel="stylesheet" href="styles/index.css" />
+    <link rel="stylesheet" href="styles/general.css" />
+  </head>
+  <body>
+    <nav>
+      <h1 class="title">Emiliano Molina</h1>
+      <button id="display-options">
+        <img
+          src="img/icon/drag_handle_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.svg"
+          alt="display_menu"
+        />
+      </button>
+      <ul id="menu-list" style="display: none">
+        <li>
+          <a href="/pages/about.html">Sobre mí</a>
+        </li>
+        <li>
+          <a href="/pages/contact.html">Contacto</a>
+        </li>
+        <li>
+          <a href="/pages/projects.html">Proyectos</a>
+        </li>
+        <li>
+          <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank"
+            >Random</a
+          >
+        </li>
+      </ul>
+    </nav>
+    <div class="content">
+      <h2 style="font-size: 2.5rem;">wasauski</h2>
+      <span></span>
+      <button>Mi trabajo</button>
+    </div>
+    <script>
+      const button = document.getElementById("display-options");
+      const optionList = document.getElementById("menu-list");
+
+      button.addEventListener("click", () => {
+        if (optionList.style.display == "none") {
+          optionList.style.display = "block";
+        } else {
+          optionList.style.display = "none";
+        }
+      });
+    </script>
+  </body>
 </html>
