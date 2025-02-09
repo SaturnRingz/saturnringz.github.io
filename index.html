@@ -3,82 +3,103 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Saturn Ringz</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/icon/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/icon/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/icon/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
     <link rel="stylesheet" href="styles/index.css" />
     <link rel="stylesheet" href="styles/general.css" />
   </head>
   <body>
     <nav>
-      <h1>EMILIANO MOLINA</h1>
+      <div class="typewriter">
+        <div>
+          <h1 id="dev-name">EMILIANO MOLINA</h1>
+        </div>
+      </div>
       <button id="display-options">
         <img
           src="img/icon/drag_handle_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.svg"
           alt="display_menu"
         />
       </button>
-      <ul id="menu-list" style="display: none">
-        <li>
-          <a href="/pages/about.html">Sobre mí</a>
-        </li>
-        <li>
-          <a href="/pages/contact.html">Contacto</a>
-        </li>
-        <li>
-          <a href="/pages/projects.html">Proyectos</a>
-        </li>
-        <li>
-          <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank"
-            >Random</a
-          >
-        </li>
-      </ul>
+      <ul id="menu-list" style="display: none"></ul>
     </nav>
     <div id="content"></div>
     <script>
       const menuButton = document.getElementById("display-options");
       const optionList = document.getElementById("menu-list");
       const content = document.getElementById("content");
-
-      menuButton.addEventListener("click", () => {
-        if (optionList.style.display == "none") {
-          optionList.style.display = "block";
-        } else {
-          optionList.style.display = "none";
-        }
-      });
-
-      const titlesAndDescriptions = [
+      let menuIsOpened = false;
+      
+      const menuOptions = [
+        {
+          title: "Sobre mí",
+          href: "/pages/about.html",
+        },
+        {
+          title: "Contacto",
+          href: "/pages/contact.html",
+        },
+        {
+          title: "Proyectos",
+          href: "/pages/projects.html",
+        },
+        {
+          title: "Random",
+          href: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        },
+      ];
+      const titlesAndDescriptionsForContent = [
         {
           title: "Mi trabajo",
           description: "Esta es una descripción de mi trabajo",
-          button: "Este es el texto del botón",
-          link: "pages/projects",
+          href: "pages/projects",
         },
         {
           title: "Quien soy",
           description: "Esta es una descripción de quién soy",
-          button: "Este es el texto del botón",
-          link: "pages/about",
+          href: "pages/about",
         },
         {
           title: "Contacto",
           description: "Esta es una descripción de mi trabajo",
-          button: "Este es el texto del botón",
-          link: "pages/contact",
+          href: "pages/contact",
         },
       ];
+      window.addEventListener("click", (e) => {
+        const isMenuClicked = menuButton.contains(e.target);
+        optionList.style.display =
+          isMenuClicked && optionList.style.display === "none"
+            ? "block"
+            : "none";
+      });
 
-      for (let i = 0; i <= titlesAndDescriptions.length; i++) {
+      for (let i = 0; i < menuOptions.length; i++) {
+        const option = document.createElement("li");
+        const link = document.createElement("a");
+        link.href = menuOptions[i]?.href;
+        link.textContent = menuOptions[i]?.title;
+        const isRandom =
+          menuOptions[i].title && menuOptions[i].title === "Random";
+        isRandom && (link.target = "_blank");
+        option.appendChild(link);
+        optionList.appendChild(option);
+      }
+
+      for (let i = 0; i <= titlesAndDescriptionsForContent.length; i++) {
         const card = document.createElement("div");
         const title = document.createElement("h2");
         const description = document.createElement("span");
         const cardButton = document.createElement("button");
         const anchor = document.createElement("a");
         title.style.fontSize = "2rem";
-        title.textContent = titlesAndDescriptions[i].title;
-        description.textContent = titlesAndDescriptions[i].description;
-        anchor.textContent = titlesAndDescriptions[i].button;
-        anchor.href = titlesAndDescriptions[i].link;
+        title.textContent = titlesAndDescriptionsForContent[i].title;
+        description.textContent =
+          titlesAndDescriptionsForContent[i].description;
+        anchor.textContent = "Conoce más aquí";
+        anchor.href = titlesAndDescriptionsForContent[i].href;
         card.appendChild(title);
         card.appendChild(description);
         cardButton.appendChild(anchor);
